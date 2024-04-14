@@ -4,10 +4,24 @@
     (bpCreated)="onBlueprintAdded($event)"
   ></app-cockpit>
   <hr />
+  <button class="btn btn-primary" (click)="onNameChange()">Change</button>
+  <button class="btn btn-danger" (click)="onDestoy()">Destroy</button>
+
+  <hr />
+
   <div class="row">
     <div class="col-xs-12">
       @for (elementIteration of serverElements; track $index) {
-      <app-server-element [srvElement]="elementIteration"></app-server-element>
+      <app-server-element [srvElement]="elementIteration">
+        <p #contentParagraph>
+          @if (elementIteration.type==='server') {
+          <strong style="color: red">{{ elementIteration.content }}</strong>
+
+          } @else if (elementIteration.type==='blueprint') {
+          <em>{{ elementIteration.content }}</em>
+          }
+        </p></app-server-element
+      >
       }
     </div>
   </div>
